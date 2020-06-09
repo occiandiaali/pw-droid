@@ -78,40 +78,35 @@ class MainActivity : AppCompatActivity() {
                     if (checked) {
                         radioSelection = 64
                     }
-                R.id.radioView128 ->
-                    if (checked) {
-                        radioSelection = 128
-                    }
             }
         }
         return radioSelection
     } // on radio button click
 
     // check box action
-    fun onCheckboxClick(view: View): Boolean {
+    fun onCheckBoxClick(view: View): Boolean {
         if (view is CheckBox) {
             val checked: Boolean = view.isChecked
             when (view.id) {
-                R.id.numscheckBox -> {
+                R.id.numsCheckBox -> {
                     numsChecked = checked
                     return numsChecked
                 }
-                R.id.symscheckBox -> {
+                R.id.symsCheckBox -> {
                     symsChecked = checked
                     return symsChecked
                 }
-                R.id.upperscheckBox -> {
+                R.id.uppersCheckBox -> {
                     uppersChecked = checked
                     return uppersChecked
                 }
-                R.id.lowerscheckBox -> {
+                R.id.lowersCheckBox -> {
                     lowersChecked = checked
                     return lowersChecked
                 }
-//                R.id.dubscheckBox -> {
-//                    dupsChecked = checked
-//                    return dupsChecked
-//                }
+                R.id.customsCheckBox -> {
+
+                }
             }
         }
         return false
@@ -132,14 +127,14 @@ class MainActivity : AppCompatActivity() {
 
         if (n == 16) {
             if (!pwResultView.text.isEmpty()) {
-                pwResultView.textSize = 23F
+                pwResultView.textSize = 20F
                 pwLevelView.text = "Soft"
                 pwLevelView.setTextColor(Color.parseColor("#ddba22"))
             }
         }
         if (n == 32) {
             if (!pwResultView.text.isEmpty()) {
-                pwResultView.textSize = 23F
+                pwResultView.textSize = 20F
                 pwLevelView.text = "Good"
                 pwLevelView.setTextColor(Color.parseColor("#a3ad0b"))
             }
@@ -147,17 +142,18 @@ class MainActivity : AppCompatActivity() {
         if (n == 64) {
             if (!pwResultView.text.isEmpty()) {
                 pwResultView.textSize = 17F
+                pwResultView.textScaleX = 1.5F
                 pwLevelView.text = "Strong"
                 pwLevelView.setTextColor(Color.parseColor("#21de7c"))
             }
         }
-        if (n == 128) {
-            if (!pwResultView.text.isEmpty()) {
-                pwResultView.textSize = 15F
-                pwLevelView.text = "Stronger"
-                pwLevelView.setTextColor(Color.parseColor("#069740"))
-            }
-        }
+//        if (n == 128) {
+//            if (!pwResultView.text.isEmpty()) {
+//                pwResultView.textSize = 15F
+//                pwLevelView.text = "Stronger"
+//                pwLevelView.setTextColor(Color.parseColor("#069740"))
+//            }
+//        }
 
 
         if (n > 0) {
@@ -167,16 +163,11 @@ class MainActivity : AppCompatActivity() {
                     sb.append(alphaNumericString[index])
                 } catch (e: Exception) {
                     pwLevelView.text = "Select at least one of the checkboxes!"
-                    //Toast.makeText(applicationContext, "Select at least one PW xter!", Toast.LENGTH_SHORT).show()
                 }
             }
         } else {
             pwLevelView.text = "Choose a PW Length!"
-//            Toast.makeText(
-//                applicationContext,
-//                "Choose a PW Length!",
-//                Toast.LENGTH_SHORT
-//            ).show()
+
         }
         pwResultView.text = sb.toString()
         return pwResultView.toString()
