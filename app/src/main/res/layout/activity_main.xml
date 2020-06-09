@@ -112,7 +112,8 @@
         android:id="@+id/numscheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
         android:onClick="onCheckboxClick"
         android:text="@string/check_nums"
         app:layout_constraintStart_toStartOf="parent"
@@ -122,19 +123,22 @@
         android:id="@+id/symscheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/check_syms"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
         android:onClick="onCheckboxClick"
-        app:layout_constraintTop_toBottomOf="@+id/pwXtersView"
-        app:layout_constraintLeft_toRightOf="@id/numscheckBox"
-        tools:layout_editor_absoluteX="145dp" />
+        android:text="@string/check_syms"
+        app:layout_constraintStart_toEndOf="@+id/numscheckBox"
+        app:layout_constraintTop_toBottomOf="@+id/pwXtersView" />
 
     <CheckBox
         android:id="@+id/upperscheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="124dp"
         android:onClick="onCheckboxClick"
         android:text="@string/check_uppers"
-        app:layout_constraintLeft_toRightOf="@id/symscheckBox"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pwXtersView" />
 
     <CheckBox
@@ -142,27 +146,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:text="@string/check_lowers"
         android:onClick="onCheckboxClick"
-        app:layout_constraintRight_toLeftOf="@id/dubscheckBox"
+        android:text="@string/check_lowers"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/numscheckBox" />
-
-    <CheckBox
-        android:id="@+id/dubscheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/check_dups"
-        android:onClick="onCheckboxClick"
-        app:layout_constraintLeft_toRightOf="@id/lowerscheckBox"
-        app:layout_constraintTop_toBottomOf="@id/symscheckBox" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/generateFAB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="500dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="448dp"
         android:clickable="true"
         android:focusable="true"
         app:layout_constraintStart_toStartOf="parent"
@@ -173,7 +167,7 @@
         android:id="@+id/copyFAB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="448dp"
         android:clickable="true"
         android:focusable="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -186,8 +180,8 @@
         android:id="@+id/shareFAB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
-        android:layout_marginEnd="88dp"
+        android:layout_marginTop="448dp"
+        android:layout_marginEnd="68dp"
         android:clickable="true"
         android:focusable="true"
         app:layout_constraintEnd_toEndOf="parent"
