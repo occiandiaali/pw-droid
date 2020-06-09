@@ -29,18 +29,14 @@ class MainActivity : AppCompatActivity() {
     private var symsChecked: Boolean = false
     private var uppersChecked: Boolean = false
     private var lowersChecked: Boolean = false
-    private var dupsChecked: Boolean = false
+   // private var dupsChecked: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         generateFAB.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                getAlphaNumericString(radioSelection, numsChecked, symsChecked, uppersChecked, lowersChecked, dupsChecked)
-            } else {
-                Toast.makeText(applicationContext, "Minimum version issue", Toast.LENGTH_SHORT).show()
-            }
+                getAlphaNumericString(radioSelection, numsChecked, symsChecked, uppersChecked, lowersChecked)
         } // generate PW
 
         copyFAB.setOnClickListener {
@@ -112,52 +108,52 @@ class MainActivity : AppCompatActivity() {
                     lowersChecked = checked
                     return lowersChecked
                 }
-                R.id.dubscheckBox -> {
-                    dupsChecked = checked
-                    return dupsChecked
-                }
+//                R.id.dubscheckBox -> {
+//                    dupsChecked = checked
+//                    return dupsChecked
+//                }
             }
         }
         return false
     } // on check box click
 
-    @RequiresApi(Build.VERSION_CODES.N)
+   // @RequiresApi(Build.VERSION_CODES.N)
     private fun getAlphaNumericString(n: Int, numsCheck: Boolean, symsCheck: Boolean, uppersCheck: Boolean, lowersCheck: Boolean
-                                      , dupsCheck: Boolean): String {
+    ): String {
         var baseStr = ""
         if (numsCheck) baseStr += "0123456789"
         if (symsCheck) baseStr += "@!#$%&*?^"
         if (uppersCheck) baseStr += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         if (lowersCheck) baseStr += "abcdefghijklmnopqrstuvwxyz"
-        if (dupsCheck) baseStr += "abcdefghijklmnopqrstuvwxyz@!#%&*?^ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".chars().distinct()
+        //if (dupsCheck) baseStr += "abcdefghijklmnopqrstuvwxyz@!#%&*?^ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".chars().distinct()
 
         val alphaNumericString = baseStr
         val sb = StringBuilder(n)
 
         if (n == 16) {
             if (!pwResultView.text.isEmpty()) {
-                pwResultView.textSize = 25F
+                pwResultView.textSize = 23F
                 pwLevelView.text = "Soft"
                 pwLevelView.setTextColor(Color.parseColor("#ddba22"))
             }
         }
         if (n == 32) {
             if (!pwResultView.text.isEmpty()) {
-                pwResultView.textSize = 25F
+                pwResultView.textSize = 23F
                 pwLevelView.text = "Good"
                 pwLevelView.setTextColor(Color.parseColor("#a3ad0b"))
             }
         }
         if (n == 64) {
             if (!pwResultView.text.isEmpty()) {
-                pwResultView.textSize = 20F
+                pwResultView.textSize = 17F
                 pwLevelView.text = "Strong"
                 pwLevelView.setTextColor(Color.parseColor("#21de7c"))
             }
         }
         if (n == 128) {
             if (!pwResultView.text.isEmpty()) {
-                pwResultView.textSize = 18.7F
+                pwResultView.textSize = 15F
                 pwLevelView.text = "Stronger"
                 pwLevelView.setTextColor(Color.parseColor("#069740"))
             }
@@ -170,15 +166,17 @@ class MainActivity : AppCompatActivity() {
                 try {
                     sb.append(alphaNumericString[index])
                 } catch (e: Exception) {
-                    Toast.makeText(applicationContext, "Select at least one PW xter!", Toast.LENGTH_SHORT).show()
+                    pwLevelView.text = "Select at least one of the checkboxes!"
+                    //Toast.makeText(applicationContext, "Select at least one PW xter!", Toast.LENGTH_SHORT).show()
                 }
             }
         } else {
-            Toast.makeText(
-                applicationContext,
-                "Choose a PW Length!",
-                Toast.LENGTH_SHORT
-            ).show()
+            pwLevelView.text = "Choose a PW Length!"
+//            Toast.makeText(
+//                applicationContext,
+//                "Choose a PW Length!",
+//                Toast.LENGTH_SHORT
+//            ).show()
         }
         pwResultView.text = sb.toString()
         return pwResultView.toString()
