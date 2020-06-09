@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">PWDroid</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="pw_result">Your PW shows here</string>
+    <string name="pw_strength">Strength</string>
+    <string name="pw_length_label">PW length</string>
+    <string name="radio_16">16 characters</string>
+    <string name="radio_32">32 characters</string>
+    <string name="radio_64">64 characters</string>
+    <string name="radio_128">128 characters</string>
+    <string name="radio_256">256 characters</string>
+    <string name="radio_512">512 characters</string>
+    <string name="pw_xters_label">PW characters</string>
+    <string name="check_nums">Numbers(123)</string>
+    <string name="check_syms">Symbols(!@#)</string>
+    <string name="check_uppers">Upper(ABC)</string>
+    <string name="check_lowers">Lower(abc)</string>
+    <string name="check_dups">No duplicates</string>
+    <string name="check_hash">Hash</string>
+
+</resources>
