@@ -17,15 +17,15 @@ class SettingsActivity : AppCompatActivity() {
         actionBar?.setDisplayHomeAsUpEnabled(true)
 
         val arrayAdapter: ArrayAdapter<*>
-        val sections = arrayOf(
+        val settingsSections = arrayOf(
             "Themes",
             "Notifications",
             "Data and storage usage",
-            "Help"
+            "Accessibility"
         )
 
         arrayAdapter = ArrayAdapter(this,
-            android.R.layout.simple_list_item_1, sections
+            android.R.layout.simple_list_item_1, settingsSections
         )
         settingsListView.adapter = arrayAdapter
 

@@ -1,16 +1,17 @@
 <resources>
     <string name="app_name">PWDroid</string>
+    <string name="app_long_name">PassWord Droid</string>
+    <string name="built_by">built by</string>
     <string name="settings">Settings</string>
     <string name="info">Info</string>
     <string name="pw_result">Your PW shows here</string>
     <string name="pw_strength">Strength</string>
     <string name="pw_length_label">Password length</string>
+
     <string name="radio_16">16 characters</string>
     <string name="radio_32">32 characters</string>
     <string name="radio_64">64 characters</string>
-    <string name="radio_128">128 characters</string>
-    <string name="radio_256">256 characters</string>
-    <string name="radio_512">512 characters</string>
+
     <string name="pw_xters_label">Select password characters</string>
     <string name="check_nums">Numbers(123)</string>
     <string name="check_syms">Symbols(!@#)</string>

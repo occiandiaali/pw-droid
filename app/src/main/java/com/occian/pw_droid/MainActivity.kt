@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     private var symsChecked: Boolean = false
     private var uppersChecked: Boolean = false
     private var lowersChecked: Boolean = false
-   // private var dupsChecked: Boolean = false
+    private var customChecked: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -105,12 +105,52 @@ class MainActivity : AppCompatActivity() {
                     return lowersChecked
                 }
                 R.id.customsCheckBox -> {
-
+                    // toggle enable/disable of other checkboxes
+                    if (!customChecked) {
+                        customChecked = checked
+                        customEditText.isEnabled = true
+                        Toast.makeText(
+                            applicationContext,
+                            "Edit field now enabled",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        numsChecked = false
+                        numsCheckBox.isEnabled = false
+                        symsChecked = false
+                        symsCheckBox.isEnabled = false
+                        uppersChecked = false
+                        uppersCheckBox.isEnabled = false
+                        lowersChecked = false
+                        lowersCheckBox.isEnabled = false
+                    } else {
+                        customChecked = false
+                        customEditText.text.clear()
+                        customEditText.isEnabled = false
+                        pwResultView.text = ""
+                        pwLevelView.text = ""
+                        Toast.makeText(
+                            applicationContext,
+                            "Edit field is disabled",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        numsChecked = true
+                        numsCheckBox.isEnabled = true
+                        symsChecked = true
+                        symsCheckBox.isEnabled = true
+                        uppersChecked = true
+                        uppersCheckBox.isEnabled = true
+                        lowersChecked = true
+                        lowersCheckBox.isEnabled = true
+                    }
                 }
             }
         }
         return false
     } // on check box click
+
+//    private fun customPW() {
+//        userInput = customEditText.text.toString()
+//    }
 
    // @RequiresApi(Build.VERSION_CODES.N)
     private fun getAlphaNumericString(n: Int, numsCheck: Boolean, symsCheck: Boolean, uppersCheck: Boolean, lowersCheck: Boolean
@@ -120,40 +160,37 @@ class MainActivity : AppCompatActivity() {
         if (symsCheck) baseStr += "@!#$%&*?^"
         if (uppersCheck) baseStr += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         if (lowersCheck) baseStr += "abcdefghijklmnopqrstuvwxyz"
-        //if (dupsCheck) baseStr += "abcdefghijklmnopqrstuvwxyz@!#%&*?^ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".chars().distinct()
+        if (customChecked) baseStr += "${customEditText.text}QUXZ~<>/89"
+
+       if (customChecked && customEditText.text.isEmpty()) {
+           Toast.makeText(applicationContext, "This is auto-generated. Type a phrase or sentence for your custom PW", Toast.LENGTH_SHORT).show()
+       }
 
         val alphaNumericString = baseStr
         val sb = StringBuilder(n)
 
         if (n == 16) {
-            if (!pwResultView.text.isEmpty()) {
+            if (pwResultView.text.isNotEmpty()) {
                 pwResultView.textSize = 20F
-                pwLevelView.text = "Soft"
+                pwLevelView.text = "Okay"
                 pwLevelView.setTextColor(Color.parseColor("#ddba22"))
             }
         }
         if (n == 32) {
-            if (!pwResultView.text.isEmpty()) {
+            if (pwResultView.text.isNotEmpty()) {
                 pwResultView.textSize = 20F
                 pwLevelView.text = "Good"
                 pwLevelView.setTextColor(Color.parseColor("#a3ad0b"))
             }
         }
         if (n == 64) {
-            if (!pwResultView.text.isEmpty()) {
+            if (pwResultView.text.isNotEmpty()) {
                 pwResultView.textSize = 17F
                 pwResultView.textScaleX = 1.5F
                 pwLevelView.text = "Strong"
                 pwLevelView.setTextColor(Color.parseColor("#21de7c"))
             }
         }
-//        if (n == 128) {
-//            if (!pwResultView.text.isEmpty()) {
-//                pwResultView.textSize = 15F
-//                pwLevelView.text = "Stronger"
-//                pwLevelView.setTextColor(Color.parseColor("#069740"))
-//            }
-//        }
 
 
         if (n > 0) {
@@ -163,11 +200,12 @@ class MainActivity : AppCompatActivity() {
                     sb.append(alphaNumericString[index])
                 } catch (e: Exception) {
                     pwLevelView.text = "Select at least one of the checkboxes!"
+                    pwLevelView.setTextColor(Color.RED)
                 }
             }
         } else {
             pwLevelView.text = "Choose a PW Length!"
-
+            pwLevelView.setTextColor(Color.RED)
         }
         pwResultView.text = sb.toString()
         return pwResultView.toString()
@@ -192,7 +230,9 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.info -> {
-                Toast.makeText(applicationContext, "About PWDroid", Toast.LENGTH_SHORT).show()
+                val infoIntent = Intent(this@MainActivity, InfoActivity::class.java)
+                infoIntent.putExtra("information", "Info")
+                startActivity(infoIntent)
                 true
             }
             else -> super.onOptionsItemSelected(item)
