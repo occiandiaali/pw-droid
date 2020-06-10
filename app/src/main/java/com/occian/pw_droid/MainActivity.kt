@@ -191,7 +191,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(settingsIntent)
                 true
             }
-            R.id.about -> {
+            R.id.info -> {
                 Toast.makeText(applicationContext, "About PWDroid", Toast.LENGTH_SHORT).show()
                 true
             }

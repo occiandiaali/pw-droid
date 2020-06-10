@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PWDroid</string>
     <string name="settings">Settings</string>
-    <string name="about">About</string>
+    <string name="info">Info</string>
     <string name="pw_result">Your PW shows here</string>
     <string name="pw_strength">Strength</string>
     <string name="pw_length_label">Password length</string>

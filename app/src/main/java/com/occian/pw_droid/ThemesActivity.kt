@@ -27,7 +27,7 @@ class ThemesActivity : AppCompatActivity() {
             "Display Light",
             "Display Dark",
             "Wallpaper",
-            "Help"
+            "Skins"
         )
 
         arrayAdapter = ArrayAdapter(this,
