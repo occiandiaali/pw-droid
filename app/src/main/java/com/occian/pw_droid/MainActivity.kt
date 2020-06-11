@@ -31,12 +31,25 @@ class MainActivity : AppCompatActivity() {
     private var lowersChecked: Boolean = false
     private var customChecked: Boolean = false
 
+    private var checkCheck: Boolean = false
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         generateFAB.setOnClickListener {
-                getAlphaNumericString(radioSelection, numsChecked, symsChecked, uppersChecked, lowersChecked)
+                getAlphaNumericString(
+                    radioSelection,
+                    numsChecked,
+                    symsChecked,
+                    uppersChecked,
+                    lowersChecked
+                )
+            if (!customsCheckBox.isChecked && !checkCheck) {
+                    pwLevelView.text = "Have you selected PW length AND characters?"
+                    pwLevelView.setTextColor(Color.RED)
+            }
         } // generate PW
 
         copyFAB.setOnClickListener {
@@ -89,6 +102,7 @@ class MainActivity : AppCompatActivity() {
             val checked: Boolean = view.isChecked
             when (view.id) {
                 R.id.numsCheckBox -> {
+                    checkCheck = true
                     numsChecked = checked
                     return numsChecked
                 }
@@ -101,26 +115,31 @@ class MainActivity : AppCompatActivity() {
                     return uppersChecked
                 }
                 R.id.lowersCheckBox -> {
+                    checkCheck = true
                     lowersChecked = checked
                     return lowersChecked
                 }
                 R.id.customsCheckBox -> {
                     // toggle enable/disable of other checkboxes
                     if (!customChecked) {
-                        customChecked = checked
+                        customChecked = true
                         customEditText.isEnabled = true
                         Toast.makeText(
                             applicationContext,
-                            "Edit field now enabled",
+                            "Typing custom PW enabled",
                             Toast.LENGTH_SHORT
                         ).show()
                         numsChecked = false
+                        //numsCheckBox.isChecked = false
                         numsCheckBox.isEnabled = false
                         symsChecked = false
+                        //symsCheckBox.isChecked = false
                         symsCheckBox.isEnabled = false
                         uppersChecked = false
+                        //uppersCheckBox.isChecked = false
                         uppersCheckBox.isEnabled = false
                         lowersChecked = false
+                        //lowersCheckBox.isChecked = false
                         lowersCheckBox.isEnabled = false
                     } else {
                         customChecked = false
@@ -130,9 +149,10 @@ class MainActivity : AppCompatActivity() {
                         pwLevelView.text = ""
                         Toast.makeText(
                             applicationContext,
-                            "Edit field is disabled",
+                            "Custom PW entry disabled",
                             Toast.LENGTH_SHORT
                         ).show()
+                        radioGroup2.clearCheck()
                         numsChecked = true
                         numsCheckBox.isEnabled = true
                         symsChecked = true
@@ -148,9 +168,6 @@ class MainActivity : AppCompatActivity() {
         return false
     } // on check box click
 
-//    private fun customPW() {
-//        userInput = customEditText.text.toString()
-//    }
 
    // @RequiresApi(Build.VERSION_CODES.N)
     private fun getAlphaNumericString(n: Int, numsCheck: Boolean, symsCheck: Boolean, uppersCheck: Boolean, lowersCheck: Boolean
@@ -162,8 +179,8 @@ class MainActivity : AppCompatActivity() {
         if (lowersCheck) baseStr += "abcdefghijklmnopqrstuvwxyz"
         if (customChecked) baseStr += "${customEditText.text}QUXZ~<>/89"
 
-       if (customChecked && customEditText.text.isEmpty()) {
-           Toast.makeText(applicationContext, "This is auto-generated. Type a phrase or sentence for your custom PW", Toast.LENGTH_SHORT).show()
+       if ((customsCheckBox.isChecked) && customEditText.text.isEmpty()) {
+           Toast.makeText(applicationContext, "This is auto-generated. Type a phrase or sentence for your custom PW", Toast.LENGTH_LONG).show()
        }
 
         val alphaNumericString = baseStr
@@ -199,12 +216,12 @@ class MainActivity : AppCompatActivity() {
                 try {
                     sb.append(alphaNumericString[index])
                 } catch (e: Exception) {
-                    pwLevelView.text = "Select at least one of the checkboxes!"
-                    pwLevelView.setTextColor(Color.RED)
+//                    pwResultView.text = "Have you selected PW length AND characters?"
+//                    pwResultView.setTextColor(Color.RED)
                 }
             }
         } else {
-            pwLevelView.text = "Choose a PW Length!"
+            pwLevelView.text = "Ensure you select PW length AND characters!"
             pwLevelView.setTextColor(Color.RED)
         }
         pwResultView.text = sb.toString()
