@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="3dp"
+    android:padding="1dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -90,7 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="11dp"
+        android:padding="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent"
@@ -122,10 +122,9 @@
         android:id="@+id/numsCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
-        android:text="@string/check_nums"
         android:onClick="onCheckBoxClick"
+        android:text="@string/check_nums"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/xtersLabelTextView" />
 
@@ -134,8 +133,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="@string/check_syms"
         android:onClick="onCheckBoxClick"
+        android:text="@string/check_syms"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/xtersLabelTextView" />
@@ -145,9 +144,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/check_uppers"
+        android:layout_marginEnd="16dp"
         android:onClick="onCheckBoxClick"
+        android:text="@string/check_uppers"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/xtersLabelTextView" />
 
@@ -167,10 +166,9 @@
         android:id="@+id/lowersCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="@string/check_lowers"
         android:onClick="onCheckBoxClick"
+        android:text="@string/check_lowers"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/numsCheckBox" />
 
@@ -179,9 +177,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="64dp"
-        android:text="@string/check_custom"
+        android:layout_marginEnd="36dp"
         android:onClick="onCheckBoxClick"
+        android:text="@string/check_custom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/symsCheckBox" />
 
@@ -189,13 +187,13 @@
         android:id="@+id/customEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:ems="10"
+        android:enabled="false"
         android:hint="@string/custom_hint"
         android:inputType="text"
-        android:enabled="false"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.873"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/customsCheckBox" />
 
